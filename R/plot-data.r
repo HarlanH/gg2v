@@ -74,7 +74,7 @@ plot_data <- function(plot) {
 
   # Process statistics which potentially change data and aesthetics.
   stats <- lapply(plot$layers, "[[", "stat")
-  params <- lapply(plot$layers, "[[", "stat_param")
+  params <- lapply(plot$layers, "[[", "stat_params")
   out <- Map(function(data, aes, stats, params) {
     process_stats(data, aes, stats, params, plot$plot_env)
   }, data, aes, stats, params)
@@ -114,7 +114,7 @@ process_stats <- function(data, aes, stat, params, env) {
   scales <- list(x = scale_dummy(data$x), y = scale_dummy(data$y))
 
   # Compute statistic
-  call <- combine(
+  call <- combine2(
     quote(stat$calculate_groups(stat, data = data, scales = scales)),
     params
   )

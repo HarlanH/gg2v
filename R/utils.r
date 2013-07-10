@@ -69,3 +69,11 @@ combine <- function(x, y) {
   x
 }
 
+combine2 <- function(x, y) {
+  n <- length(x)
+  for(i in seq_along(y)) {
+    x[[n + i]] <- y[[i]]
+    names(x)[[n+i]] <- names(y)[[i]]
+  }
+  x
+}

@@ -186,7 +186,7 @@ extract_many <- function(x, from, type = "map") {
 
 make_props <- function(aes, set, def, gg2v) {
   map <- map_extract(aes, gg2v)
-  set <- set_extract(set, gg2v)
+  if (!is.null(set)) { set <- set_extract(set, gg2v) }
   def <- set_extract(def, gg2v)
 
   modify_list(def, modify_list(map, set))
